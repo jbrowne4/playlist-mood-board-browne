@@ -1,7 +1,23 @@
 {{> header}}
 <main>
-  <h1>This is the home page!</h1>
-  <p>Currently, you are {{#unless isLoggedIn}} NOT {{/unless}} logged in.</p>
-  <p>You should {{#unless isLoggedIn}}NOT{{/unless}} be able to access <a href="/private">this page</a>.</p>
-  <p>Use the header above to {{#if isLoggedIn}} logout{{else}} login or create an account{{/if}}.</p>
-</main>
+  <h1>My Playlist Mood Board</h1>
+  <p class="intro-text">Explore the vibes. Curate your mood. Drop into the rhythm.</p>
+
+ {{#unless loggedIn}}
+      <p class="intro-text">Discover the vibe. Log in to make your own playlist mood board.</p>
+    {{else}}
+      <p class="intro-text">Welcome back! Here's your personal mood board.</p>
+    {{/unless}}
+
+    <section class="playlist-grid">
+      {{#each playlists}}
+        <div class="playlist-card">
+          <img src="{{this.image}}" alt="{{this.title}}">
+          <div class="playlist-info">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </section>
+  </main>

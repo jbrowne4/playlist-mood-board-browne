@@ -1,14 +1,16 @@
 :root {
-  --black: #020303;
-  --dark-grey: #171c1c;
-  --light-grey: #a7b9b7;
-  --primary: #5cc1bb;
-  --primary-dark: #41aaa3;
-  --secondary: hsl(15deg 100% 62%);
-  --secondary-light: hsl(15deg 100% 70%);
-  --text-color: #f5fffe;
+  --black: #000000;
+  --dark-grey: #121212;
+  --light-grey: #b3b3b3;
+  --primary: #1db954; 
+  --primary-dark: #1a1a1a;
+  --secondary: #535353;
+  --secondary-light: #2a2a2a;
+  --text-color: #ffffff;
+  --highlight: #1ed760; 
   --space: 16px;
   --font-size: 18px;
+  --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -18,7 +20,7 @@ body {
   line-height: 1.5;
   padding: 0;
   margin: 0;
-  font-family: helvetica;
+  font-family: var(--font-family);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -29,42 +31,53 @@ main {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  background-color: var(--black);
-  padding: var(--space) calc(var(--space) * 3);
+  background-color: var(--dark-grey);
+  padding: var(--space) calc(var(--space) * 2);
   text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
-main,
 main form {
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 h1 {
-  font-size: calc(var(--font-size) * 2.25);
+  font-size: calc(var(--font-size) * 2.5);
+  color: var(--primary);
 }
 h2 {
   font-size: calc(var(--font-size) * 2);
+  color: var(--highlight);
 }
 h3 {
   font-size: calc(var(--font-size) * 1.5);
+  color: var(--light-grey);
 }
 
 a {
-  color: var(--secondary-light);
+  color: var(--highlight);
+  text-decoration: none;
   transition: color 200ms;
 }
 a:hover,
 a:focus {
-  color: var(--secondary);
+  color: var(--primary);
 }
 
 button.btn {
-  border: var(--text-color);
+  border: none;
   border-radius: 4px;
-  background-color: var(--secondary-light);
+  background-color: var(--primary);
+  color: var(--black);
+  font-weight: bold;
   padding: calc(var(--space) * 0.75) calc(var(--space) * 2);
   cursor: pointer;
-  transition: background-color 200ms;
+  transition: background-color 200ms, transform 100ms;
+}
+button.btn:hover {
+  background-color: var(--highlight);
+  transform: scale(1.05);
 }
 button.btn-text {
   border: none;
@@ -136,4 +149,45 @@ header .site-logo {
   header a {
     margin: calc(var(--space) / 2);
   }
+}
+.playlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space);
+  margin-top: var(--space);
+}
+
+.playlist-card {
+  background-color: var(--dark-grey);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.playlist-card:hover {
+  transform: scale(1.03);
+}
+
+.playlist-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--primary);
+}
+
+.playlist-info {
+  padding: var(--space);
+}
+
+.playlist-info h2 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+
+.playlist-info p {
+  font-size: 1rem;
+  color: var(--light-grey);
 }
