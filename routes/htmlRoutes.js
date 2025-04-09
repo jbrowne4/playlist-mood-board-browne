@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
   {
     title: "Neon Night Vibes",
     description: "Electric beats for late-night city cruising.",
-    image: "/images/neon-lights.jpg",
+    image: "/images/neon-nights.jpg",
     vibe: "neon"
   },
   {
