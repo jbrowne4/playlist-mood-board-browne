@@ -152,9 +152,8 @@ header .site-logo {
 }
 .playlist-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space);
-  margin-top: var(--space);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 
 .playlist-card {
@@ -181,13 +180,18 @@ header .site-logo {
   padding: var(--space);
 }
 
-.playlist-info h2 {
-  margin: 0 0 8px;
-  font-size: 1.4rem;
-  color: var(--primary);
+.playlist-card.dream-pop:hover {
+  box-shadow: 0 0 20px #c8a2c8;
 }
 
-.playlist-info p {
-  font-size: 1rem;
-  color: var(--light-grey);
+.playlist-card.golden-hour:hover {
+  box-shadow: 0 0 20px #fcb045;
+}
+
+.playlist-card.neon:hover {
+  box-shadow: 0 0 20px #00f0ff;
+}
+
+.playlist-card.rainy:hover {
+  box-shadow: 0 0 20px #6b8fa3;
 }
