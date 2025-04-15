@@ -1,4 +1,15 @@
 const { User } = require("../models");
+const spotifyApi = require('../config/spotify');
+
+const getAccessToken = async () => {
+  try {
+    const data = await spotifyApi.clientCredentialsGrant();
+    spotifyApi.setAccessToken(data.body['access_token']);
+    console.log('Access token set');
+  } catch (err) {
+    console.error('Error retrieving Spotify access token', err);
+  }
+};
 
 async function login(req, res) {
   try {
@@ -17,6 +28,8 @@ async function login(req, res) {
     if (!passwordMatches)
       return res.redirect("/login?error=username or password is incorrect");
 
+    await getAccessToken();
+
     req.session.isLoggedIn = true;
     req.session.save(() => res.redirect("/"));
   } catch (err) {
@@ -29,3 +42,4 @@ async function logout(req, res) {
 }
 
 module.exports = { login, logout };
+
