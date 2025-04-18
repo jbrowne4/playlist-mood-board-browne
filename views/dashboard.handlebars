@@ -1,0 +1,14 @@
+{{#if isLoggedIn}}
+  <h2>🎧 Search Spotify</h2>
+
+  <form id="spotify-search-form">
+    <input type="text" id="spotify-query" placeholder="Search for a song or artist..." required />
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="results"></div>
+
+  <script src="/js/spotifySearch.js"></script>
+{{else}}
+  <p>You are not logged in. <a href="/login">Log in here</a>.</p>
+{{/if}}
