@@ -4,8 +4,10 @@ const exphbs = require("express-handlebars");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const connection = require("./config/connection");
+
 const apiRoutes = require("./routes/apiRoutes");
 const htmlRoutes = require("./routes/htmlRoutes");
+
 const app = express();
 
 const sessionStore = new MySQLStore({}, connection);
@@ -18,7 +20,7 @@ app.use(
     saveUninitialized: false,
     proxy: true,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
+      maxAge: 1000 * 60 * 60 * 24, 
     },
   })
 );
@@ -28,9 +30,10 @@ app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("./public"));
+app.use(express.static("./public")); 
 
-app.use("/api", apiRoutes);
-app.use("/", htmlRoutes);
+app.use("/api", apiRoutes);  
+app.use("/", htmlRoutes);    
 
 module.exports = app;
+
