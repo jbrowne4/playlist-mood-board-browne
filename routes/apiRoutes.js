@@ -1,10 +1,11 @@
-const router = require("express").Router();
-const controllers = require("../controllers");
-const checkAuth = require("../middleware/auth");
+const { getDaylightTracks } = require("../utils/spotify");
 
-// admin login/logout
-router.post("/login", controllers.auth.login);
-router.get("/logout", controllers.auth.logout);
-router.post("/signup", controllers.user.create);
-
-module.exports = router;
+router.get("/spotify/daylight", async (req, res) => {
+  try {
+    const tracks = await getDaylightTracks();
+    res.json({ tracks });
+  } catch (err) {
+    console.error("Spotify API error:", err);
+    res.status(500).json({ error: "Failed to fetch tracks" });
+  }
+});

@@ -7,9 +7,7 @@ router.get("/login", async (req, res) => {
   res.render("login", { error: req.query.error });
 });
 
-
 router.get("/signup", async (req, res) => {
-
   if (req.session.isLoggedIn) return res.redirect("/");
   res.render("signup", { error: req.query.error });
 });
@@ -49,4 +47,9 @@ router.get('/', (req, res) => {
   res.render('index', { playlists: samplePlaylists });
 });
 
+router.get("/dashboard", checkAuth, (req, res) => {
+  res.render("dashboard", { isLoggedIn: req.session.isLoggedIn });
+});
+
 module.exports = router;
+
